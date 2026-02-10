@@ -1,0 +1,11 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: gitops-squared-catalog
+  namespace: flux-system
+spec:
+  interval: 10s
+  url: oci://zot.gitops-squared.svc.cluster.local:5000/gitops-squared/catalog
+  insecure: true
+  ref:
+    tag: latest

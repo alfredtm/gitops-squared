@@ -1,0 +1,11 @@
+.git
+.github
+.claude
+.DS_Store
+bin/
+scripts/
+deploy/
+kind-config.yaml
+README.md
+LICENSE
+Makefile

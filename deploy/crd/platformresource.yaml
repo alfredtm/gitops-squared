@@ -1,0 +1,59 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  name: platformresources.gitops-squared.io
+spec:
+  group: gitops-squared.io
+  versions:
+    - name: v1alpha1
+      served: true
+      storage: true
+      schema:
+        openAPIV3Schema:
+          type: object
+          properties:
+            spec:
+              type: object
+              properties:
+                type:
+                  type: string
+                  enum: ["vm", "database", "bucket"]
+                size:
+                  type: string
+                  enum: ["small", "medium", "large"]
+                region:
+                  type: string
+                replicas:
+                  type: integer
+                  minimum: 1
+                  maximum: 10
+              required: ["type", "size"]
+            status:
+              type: object
+              properties:
+                state:
+                  type: string
+                lastSyncedAt:
+                  type: string
+      subresources:
+        status: {}
+      additionalPrinterColumns:
+        - name: Type
+          type: string
+          jsonPath: .spec.type
+        - name: Size
+          type: string
+          jsonPath: .spec.size
+        - name: Region
+          type: string
+          jsonPath: .spec.region
+        - name: Replicas
+          type: integer
+          jsonPath: .spec.replicas
+  scope: Namespaced
+  names:
+    plural: platformresources
+    singular: platformresource
+    kind: PlatformResource
+    shortNames:
+      - pr
