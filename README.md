@@ -188,4 +188,3 @@ This is a thought experiment, not production software. It does not include authe
 ## Background
 
 See [GitOps Squared](https://alfredtm.github.io/gitops-squared) for the full motivation behind this architecture.
-# gitops-squared
